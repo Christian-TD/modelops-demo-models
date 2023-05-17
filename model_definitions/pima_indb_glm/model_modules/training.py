@@ -82,6 +82,8 @@ def train(context: ModelContext, **kwargs):
             predictor_dict[row['predictor']] = value
     
     feature_importance = dict(sorted(predictor_dict.items(), key=lambda x: x[1], reverse=True))
+    min_max_scaler = preprocessing.MinMaxScaler()
+    X_train_minmax = min_max_scaler.fit_transform(X_train)
     plot_feature_importance(feature_importance, f"{context.artifact_output_path}/feature_importance")
 
     record_training_stats(
