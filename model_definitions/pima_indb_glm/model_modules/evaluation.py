@@ -29,6 +29,7 @@ def plot_feature_importance(fi, img_filename):
     
     
 def plot_confusion_matrix(cf, img_filename):
+    import warnings
     import seaborn as sns
     import matplotlib.pyplot as plt
     ax = plt.subplot()
