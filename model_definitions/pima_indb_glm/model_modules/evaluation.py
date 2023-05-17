@@ -34,7 +34,7 @@ def plot_confusion_matrix(cf, img_filename):
     import matplotlib.pyplot as plt
     ax = plt.subplot()
     with warnings.catch_warnings():
-        warnings.simplefilter('ignore', SpecificWarningObject)
+        warnings.simplefilter('ignore', DeprecationWarning)
         sns.heatmap(cf, annot=True, fmt='g', ax=ax);
     ax.set_xlabel('Predicted labels');
     ax.set_ylabel('True labels'); 
