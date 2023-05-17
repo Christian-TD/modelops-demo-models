@@ -148,7 +148,7 @@ def evaluate(context: ModelContext, **kwargs):
     feature_importance = dict(sorted(predictor_dict.items(), key=lambda x: x[1], reverse=True))
     keys, values = zip(*feature_importance.items())
     norm_values = (values-np.min(values))/(np.max(values)-np.min(values))
-    feature_importance = {keys[i]: norm_values[i] for i in range(len(keys))}
+    feature_importance = {keys[i]: int(norm_values[i]*1000) for i in range(len(keys))}
     plot_feature_importance(feature_importance, f"{context.artifact_output_path}/feature_importance")
 
     predictions_table = "predictions_tmp"
