@@ -10,6 +10,12 @@ import h2o
 from h2o.automl import H2OAutoML
 
 
+def check_java():
+    if !os.environ['JAVA_HOME']:
+        import jdk
+        jdk.install('17')
+
+
 def train(context: ModelContext, **kwargs):
     aoa_create_context()
 
@@ -17,6 +23,7 @@ def train(context: ModelContext, **kwargs):
     target_name = context.dataset_info.target_names[0]
     
     # read training dataset from Teradata and convert to pandas
+    check_java()
     h2o.init()
     train_df = DataFrame.from_query(context.dataset_info.sql)
     train_hdf = h2o.H2OFrame(train_df.to_pandas())
