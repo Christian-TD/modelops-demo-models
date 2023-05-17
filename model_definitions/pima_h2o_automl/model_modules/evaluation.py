@@ -9,6 +9,7 @@ from aoa import (
 )
 import json
 import os
+import matplotlib
 
 
 def evaluate(context: ModelContext, **kwargs):
