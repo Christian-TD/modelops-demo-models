@@ -29,13 +29,12 @@ def plot_feature_importance(fi, img_filename):
     
     
 def plot_confusion_matrix(cf, img_filename):
-    import warnings
-    import seaborn as sns
     import matplotlib.pyplot as plt
-    ax = plt.subplot()
-    with warnings.catch_warnings():
-        warnings.simplefilter('ignore', DeprecationWarning)
-        sns.heatmap(cf, annot=True, fmt='g', ax=ax);
+    fig, ax = plt.subplots(figsize=(7.5, 7.5))
+    ax.matshow(cf, cmap=plt.cm.Blues, alpha=0.3)
+    for i in range(cf.shape[0]):
+        for j in range(cf.shape[1]):
+            ax.text(x=j, y=i,s=cf[i, j], va='center', ha='center', size='xx-large')
     ax.set_xlabel('Predicted labels');
     ax.set_ylabel('True labels'); 
     ax.set_title('Confusion Matrix');
