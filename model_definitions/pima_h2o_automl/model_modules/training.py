@@ -11,7 +11,9 @@ from h2o.automl import H2OAutoML
 
 
 def check_java():
-    if !os.environ['JAVA_HOME']:
+    try:
+        print(os.environ['JAVA_HOME'])
+    except:
         import jdk
         jdk.install('17')
 
