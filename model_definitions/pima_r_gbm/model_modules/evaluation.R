@@ -9,7 +9,7 @@ LoadPackages <- function() {
 }
 
 evaluate <- function(data_conf, model_conf, ...) {
-    model <- readRDS(paste(ifelse(model_conf[["inputPath"]] != "", model_conf[["inputPath"]], "artifacts/input/"), "model.rds", sep=""))
+    model <- readRDS(paste(ifelse(model_conf[["inputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["inputPath"]], "artifacts/input/"), "model.rds", sep=""))
     print("Evaluating model...")
 
     suppressPackageStartupMessages(LoadPackages())
@@ -32,7 +32,7 @@ evaluate <- function(data_conf, model_conf, ...) {
 
     cm <- confusionMatrix(table(preds, data$HasDiabetes))
 
-    png(paste(ifelse(model_conf[["outputPath"]] != "" | !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "confusion_matrix.png", sep=""), width = 860, height = 860)
+    png(paste(ifelse(model_conf[["outputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "confusion_matrix.png", sep=""), width = 860, height = 860)
     fourfoldplot(cm$table)
     dev.off()
 
@@ -40,5 +40,5 @@ evaluate <- function(data_conf, model_conf, ...) {
     metrics <- cm$overall
 
     # Save metrics
-    write(jsonlite::toJSON(metrics, auto_unbox = TRUE, null = "null", keep_vec_names=TRUE), paste(ifelse(model_conf[["outputPath"]] != "" | !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "metrics.json", sep=""))
+    write(jsonlite::toJSON(metrics, auto_unbox = TRUE, null = "null", keep_vec_names=TRUE), paste(ifelse(model_conf[["outputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "metrics.json", sep=""))
 }
