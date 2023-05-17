@@ -1,7 +1,6 @@
 {
-    "id": "24587e1e-be79-4f81-a41b-1643363ab035",
-    "name": "PIMA Quickstart",
-    "description": "PIMA Quickstart",
-    "language": "python",
-    "source_model_id": "03c9a01f-bd46-4e7c-9a60-4282039094e6"
+    "id": "5b41d4d4-7236-54ab-846a-01c3151e1fd9",
+    "name": "Python PIMA Quickstart",
+    "description": "Python PIMA Quickstart for Diabetes Prediction",
+    "language": "python"
 }

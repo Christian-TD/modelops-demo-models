@@ -1,4 +1,3 @@
-
 from teradataml import copy_to_sql, DataFrame
 from aoa import (
     record_scoring_stats,
