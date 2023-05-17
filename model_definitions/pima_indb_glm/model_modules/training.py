@@ -86,6 +86,7 @@ def train(context: ModelContext, **kwargs):
     keys, values = zip(*feature_importance.items())
     norm_values = (values-np.min(values))/(np.max(values)-np.min(values))
     feature_importance = {keys[i]: int(norm_values[i]*1000) for i in range(len(keys))}
+    print(feature_importance)
     plot_feature_importance(feature_importance, f"{context.artifact_output_path}/feature_importance")
 
     record_training_stats(
