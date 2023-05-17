@@ -55,8 +55,5 @@ train <- function(data_conf, model_conf, ...) {
 
     # Save trained model
     print("Saving trained model...")
-    
-    print(paste(ifelse(model_conf[["outputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "model.rds", sep=""))
-    saveRDS(model, paste(ifelse(model_conf[["outputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["outputPath"]], "artifacts/output/"), "model.rds", sep=""))
-    #saveRDS(model, "artifacts/output/model.rds")
+    saveRDS(model, paste(ifelse(model_conf$outputPath != "" && !is.null(model_conf$outputPath), model_conf[["outputPath"]], "artifacts/output/"), "model.rds", sep=""))
 }

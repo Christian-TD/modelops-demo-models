@@ -62,5 +62,5 @@ score.batch <- function(data_conf, model_conf, model_version, job_id, ...) {
 
 initialise_model <- function() {
     print("Loading model...")
-    model <- readRDS(paste(ifelse(model_conf[["inputPath"]] != "" || !model_conf[["outputPath"]], model_conf[["inputPath"]], "artifacts/input/"), "model.rds", sep=""))
+    model <- readRDS(paste(ifelse(model_conf$inputPath != "" && !is.null(model_conf$inputPath), model_conf$inputPath, "artifacts/input/"), "model.rds", sep=""))
 }
