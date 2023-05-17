@@ -55,7 +55,7 @@ score.batch <- function(data_conf, model_conf, model_version, job_id, ...) {
 
     copy_to(con, pred_df,
             name=dbplyr::in_schema(data_conf$predictions$database, data_conf$predictions$table),
-            types = c("varchar(255)", "int", "varchar(255)", "varchar(255)"),
+            types = c("varchar(255)", "bigint", "bigint", "clob"),
             append=TRUE)
     print("Saved batch predictions...")
 }
