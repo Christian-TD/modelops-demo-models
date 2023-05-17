@@ -32,7 +32,9 @@ def plot_confusion_matrix(cf, img_filename):
     import seaborn as sns
     import matplotlib.pyplot as plt
     ax = plt.subplot()
-    sns.heatmap(cf, annot=True, fmt='g', ax=ax);
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore', SpecificWarningObject)
+        sns.heatmap(cf, annot=True, fmt='g', ax=ax);
     ax.set_xlabel('Predicted labels');
     ax.set_ylabel('True labels'); 
     ax.set_title('Confusion Matrix');
