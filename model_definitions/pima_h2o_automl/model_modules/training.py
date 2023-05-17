@@ -14,8 +14,10 @@ def check_java():
     try:
         print(os.environ['JAVA_HOME'])
     except:
+        print ('Installing Java...')
         import jdk
-        jdk.install('17')
+        jdk.install('17', path='/usr/local/jdk')
+        os.environ['JAVA_HOME'] = '/usr/local/jdk'
 
 
 def train(context: ModelContext, **kwargs):
