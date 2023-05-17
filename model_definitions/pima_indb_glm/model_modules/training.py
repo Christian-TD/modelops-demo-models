@@ -39,7 +39,7 @@ def train(context: ModelContext, **kwargs):
         target_columns = feature_names,
         scale_method = context.hyperparams["scale_method"],
         miss_value = context.hyperparams["miss_value"],
-        global_scale = context.hyperparams["global_scale"],
+        global_scale = context.hyperparams["global_scale"].lower() in ['true', '1'],
         multiplier = context.hyperparams["multiplier"],
         intercept = context.hyperparams["intercept"]
     )
