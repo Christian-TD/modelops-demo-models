@@ -64,7 +64,7 @@ def train(context: ModelContext, **kwargs):
         fi = model.varimp(True)
         fix = fi[['variable','scaled_importance']]
         fis = fix.to_dict('records')
-        feature_importance = {v['variable']:v['scaled_importance'] for (k,v) in enumerate(fis)}
+        feature_importance = {v['variable']:float(v['scaled_importance']) for (k,v) in enumerate(fis)}
     except:
         print("Warning: This model doesn't support feature importance (Stacked Ensemble)")
         aml.varimp_heatmap()
@@ -75,5 +75,5 @@ def train(context: ModelContext, **kwargs):
                           features=feature_names,
                           targets=[target_name],
                           categorical=[target_name],
-                          importance=feature_importance,
+                          feature_importance=feature_importance,
                           context=context)
