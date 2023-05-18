@@ -47,7 +47,15 @@ def score(context: ModelContext, **kwargs):
                 if_exists="append")
 
     print("Saved predictions in Teradata")
+    
+    # calculate stats
+    predictions_df = DataFrame.from_query(f"""
+        SELECT 
+            * 
+        FROM {context.dataset_info.get_predictions_metadata_fqtn()} 
+            WHERE job_id = '{context.job_id}'
+    """)
 
     record_scoring_stats(features_df=DataFrame.from_query(context.dataset_info.sql),
-                         predicted_df=DataFrame(context.dataset_info.predictions_table),
+                         predicted_df=predictions_df,
                          context=context)
