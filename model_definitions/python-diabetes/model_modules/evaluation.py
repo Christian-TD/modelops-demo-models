@@ -51,6 +51,7 @@ def evaluate(context: ModelContext, **kwargs):
         FROM ({context.dataset_info.sql}) Z 
         LEFT JOIN (SELECT * FROM {predictions_table}) Y ON Z.{context.dataset_info.entity_key} = Y.{context.dataset_info.entity_key}
     """)
+    print(eval_df)
 
     configure.val_install_location = os.environ.get("AOA_VAL_INSTALL_DB", os.environ.get("VMO_VAL_INSTALL_DB", "TRNG_XSP"))
     statistics = valib.Frequency(data=eval_df, columns='Observed')
