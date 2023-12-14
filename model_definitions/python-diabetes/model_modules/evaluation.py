@@ -49,7 +49,7 @@ def evaluate(context: ModelContext, **kwargs):
     SELECT 
         Z.{context.dataset_info.entity_key}, CAST(Z.{context.dataset_info.target_names[0]} AS INTEGER) AS Observed, CAST(Y.{context.dataset_info.target_names[0]} AS INTEGER) AS Predicted
         FROM ({context.dataset_info.sql}) Z 
-        LEFT JOIN (SELECT * FROM {predictions_temp_table}) Y ON Z.{context.dataset_info.entity_key} = Y.{context.dataset_info.entity_key}
+        LEFT JOIN (SELECT * FROM {predictions_table}) Y ON Z.{context.dataset_info.entity_key} = Y.{context.dataset_info.entity_key}
     """)
     print(eval_df)
 
