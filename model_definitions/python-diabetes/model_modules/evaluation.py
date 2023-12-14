@@ -55,13 +55,13 @@ def evaluate(context: ModelContext, **kwargs):
     configure.val_install_location = os.environ.get("AOA_VAL_INSTALL_DB", os.environ.get("VMO_VAL_INSTALL_DB", "TRNG_XSP"))
     statistics = valib.Frequency(data=eval_df, columns='Observed')
     eval_stats = ClassificationEvaluator(data=eval_df, observation_column='Observed', prediction_column='Predicted', num_labels=int(statistics.result.count(True).to_pandas().count_xval))
-    eval_data = eval_stats.output_data.to_pandas()
+    eval_data = eval_stats.output_data.to_pandas().reset_index(drop=True)
 
     evaluation = {
-        'Accuracy': '{:.2f}'.format(float(eval_data.loc[eval_data['Metric'] == 'Accuracy']['MetricValue'])),
-        'Recall': '{:.2f}'.format(float(eval_data.loc[eval_data['Metric'] == 'Macro-Recall']['MetricValue'])),
-        'Precision': '{:.2f}'.format(float(eval_data.loc[eval_data['Metric'] == 'Macro-Precision']['MetricValue'])),
-        'f1-score': '{:.2f}'.format(float(eval_data.loc[eval_data['Metric'] == 'Macro-F1']['MetricValue']))
+        'Accuracy': '{:.2f}'.format(eval_data[eval_data.Metric.str.startswith('Accuracy')].MetricValue.item()),
+        'Recall': '{:.2f}'.format(eval_data[eval_data.Metric.str.startswith('Macro-Recall')].MetricValue.item()),
+        'Precision': '{:.2f}'.format(eval_data[eval_data.Metric.str.startswith('Macro-Precision')].MetricValue.item()),
+        'f1-score': '{:.2f}'.format(eval_data[eval_data.Metric.str.startswith('Macro-F1')].MetricValue.item())
     }
 
     with open(f"{context.artifact_output_path}/metrics.json", "w+") as f:
