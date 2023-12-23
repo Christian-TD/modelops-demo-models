@@ -2,8 +2,8 @@ numpy==1.21.6
 pandas==1.3.5
 xgboost==1.6.2
 scikit-learn==1.0.2
-shap==0.44.0
+shap==0.40.0
 matplotlib==3.8.2
-teradataml==17.20.0.6
+teradataml==17.20.0.0
 nyoka==5.5.0
 teradatamodelops==7.0.3
