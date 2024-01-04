@@ -1,5 +1,5 @@
 from sklearn import metrics
-from teradataml import DataFrame, copy_to_sql, get_context, H2OPredict
+from teradataml import DataFrame, get_context, H2OPredict
 from aoa import (
     record_evaluation_stats,
     save_plot,
@@ -9,7 +9,6 @@ from aoa import (
 )
 import json
 import os
-import matplotlib
 
 
 def evaluate(context: ModelContext, **kwargs):

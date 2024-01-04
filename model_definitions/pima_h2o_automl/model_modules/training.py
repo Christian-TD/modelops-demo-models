@@ -17,7 +17,7 @@ def check_java():
         print ('Installing Java...')
         import jdk
         jdk.install('17', path='/usr/local/jdk')
-        os.environ['JAVA_HOME'] = '/usr/local/jdk/jdk-17.0.7+7'
+        os.environ['JAVA_HOME'] = '/usr/local/jdk/jdk-17.0.9+9'
 
 
 def train(context: ModelContext, **kwargs):

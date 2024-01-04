@@ -2,5 +2,25 @@
     "id": "cdce3e32-3f8c-417f-b10e-493f21740a92",
     "name": "Python PIMA H2O AutoML",
     "description": "Python PIMA H2O AutoML for Diabetes Prediction",
-    "language": "python"
+    "language": "python",
+    "automation": {
+        "training": {
+            "resources": {
+                "cpu": "1",
+                "memory": "1Gi"
+            }
+        },
+        "evaluation": {
+            "resources": {
+                "cpu": "1",
+                "memory": "1Gi"
+            }
+        },
+        "deployment": {
+            "resources": {
+                "cpu": "1",
+                "memory": "1Gi"
+            }
+        }
+    }
 }
